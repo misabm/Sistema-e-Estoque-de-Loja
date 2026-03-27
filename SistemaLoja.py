@@ -1,25 +1,18 @@
+from Estoque import produtos
+
+
 def sistema_loja():
-    while True:
-        print("\n=== SISTEMA DA LOJA ===")
-        print("1 - Consultar produto")
-        print("2 - Calcular total")
-        print("3 - Calcular troco")
-        print("0 - Voltar ao menu principal")
+    print("\n=== SISTEMA DA LOJA ===")
 
-        opcao = input("Escolha uma opção: ")
+    if not produtos:
+        print("Nenhum produto disponível para venda.")
+        input("Pressione Enter para voltar...")
+        return
 
-        if opcao == "1":
-            print("Função consultar produto")
+    print("\nProdutos disponíveis:")
 
-        elif opcao == "2":
-            print("Função calcular total")
+    for nome, dados in produtos.items():
+        if dados["preco"] is not None and dados["quantidade"] > 0:
+            print(f"- {nome} | R$ {dados['preco']:.2f} | Estoque: {dados['quantidade']}")
 
-        elif opcao == "3":
-            print("Função calcular troco")
-
-        elif opcao == "0":
-            print("Voltando ao menu principal...")
-            break
-
-        else:
-            print("Opção inválida!")
+    input("\nPressione Enter para voltar...")

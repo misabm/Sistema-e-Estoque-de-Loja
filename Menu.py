@@ -6,7 +6,7 @@ def menu_principal():
     while True:
         print("\n==== MENU PRINCIPAL ====")
         print("1 - Sistema da Loja")
-        print("2 - Estoque")
+        print("2 - Sistema de Estoque")
         print("0 - Sair")
 
         opcao = input("Escolha uma opção: ")
@@ -16,7 +16,7 @@ def menu_principal():
         elif opcao == "2":
             sistema_estoque()
         elif opcao == "0":
-            print("Encerrando o programa...")
+            print("Encerrando o sistema...")
             break
         else:
             print("Opção inválida!")

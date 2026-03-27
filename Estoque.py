@@ -1,6 +1,5 @@
 produtos = {}
 
-
 def adicionar_produto():
     print("\n=== Adicionar Produto ===")
     nome = input("Digite o nome do produto: ").strip()
@@ -52,14 +51,37 @@ def listar_produtos():
         else:
             print(f"- {nome} | R$ {preco:.2f}")
 
+def calcular_total_estoque():
+    print("\n=== Valor Total do Estoque ===")
+
+    total = 0
+
+    for produto, dados in produtos.items():
+        preco = dados["preco"]
+        quantidade = dados["quantidade"]
+
+        total += preco * quantidade
+
+    print(f"Valor total do estoque: R$ {total:.2f}")
+
+def gerar_alerta_estoque_baixo():
+    limite = 5
+
+    for produto, dados in produtos.items():
+        if dados["quantidade"] < limite:
+            print(f"⚠ ALERTA: {produto} está com estoque baixo ({dados['quantidade']} unidades)")
+
 
 def sistema_estoque():
+    gerar_alerta_estoque_baixo()
+    
     while True:
         print("\n==== SISTEMA DE ESTOQUE ====")
         print("1 - Adicionar Produto")
         print("2 - Adicionar Preço do Produto")
         print("3 - Listar Produtos")
-        print("0 - Voltar")
+        print("4 - Calcular Total do Estoque")
+        print("0 - Voltar ao menu principal")
 
         opcao = input("Escolha uma opção: ")
 
@@ -69,8 +91,11 @@ def sistema_estoque():
             adicionar_preco_produto()
         elif opcao == "3":
             listar_produtos()
+        elif opcao == "4":
+            calcular_total_estoque()
         elif opcao == "0":
             print("Voltando ao menu principal...")
             break
+        
         else:
             print("Opção inválida!")

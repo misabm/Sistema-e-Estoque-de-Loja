@@ -78,6 +78,32 @@ def listar_produtos():
 
         print(f"- {nome} | {preco_texto} | Quantidade: {quantidade}")
 
+def remover_produto():
+    print("\n=== Remover Produto ===")
+    nome = input("Digite o nome do produto que deseja remover: ").strip().title()
+
+    if nome in produtos:
+        # O comando 'del' remove a chave e os valores associados
+        del produtos[nome]
+        print(f"Produto '{nome}' removido com sucesso do estoque!")
+    else:
+        print(f"Erro: O produto '{nome}' não foi encontrado.")
+
+def atualizar_quantidade():
+    print("\n=== Atualizar Quantidade (Sobrescrever) ===")
+    nome = input("Digite o nome do produto: ").strip().title()
+    if nome not in produtos:
+        print("Erro: Produto não encontrado.")
+        return
+    try:
+        nova_qtd = int(input(f"Digite a nova quantidade real para '{nome}': "))
+        if nova_qtd < 0:
+            print("A quantidade não pode ser negativa.")
+            return
+        produtos[nome]["quantidade"] = nova_qtd
+        print(f"Quantidade de '{nome}' atualizada para {nova_qtd} unidades.")
+    except ValueError:
+        print("Erro: Digite um número inteiro válido.")
 
 def calcular_total_estoque():
     print("\n=== Valor Total do Estoque ===")
@@ -120,11 +146,14 @@ def sistema_estoque():
         elif opcao == "3":
             adicionar_unidade_produto()
         elif opcao == "4":
-            listar_produtos()
+            atualizar_quantidade()
         elif opcao == "5":
+            remover_produto()
+        elif opcao == "6":
+            listar_produtos()
+        elif opcao == "7":
             calcular_total_estoque()
         elif opcao == "0":
-            print("Voltando...")
             break
         else:
             print("Opção inválida!")

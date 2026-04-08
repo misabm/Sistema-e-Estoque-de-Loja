@@ -20,6 +20,14 @@ def listar_produtos_disponiveis():
 
     return disponiveis
 
+def calcular_imposto(valor_total, taxa=0.10):
+    if not isinstance(valor_total, (int, float)) or valor_total < 0: return 0.0
+    return round(valor_total * taxa, 2)
+
+def calcular_frete(valor_total):
+    if not valor_total or valor_total <= 0: return 0.0
+    if valor_total >= 200: return 0.0
+    return 7.50 if valor_total >= 100 else 15.00
 
 def sistema_loja():
     print("\n=== SISTEMA DA LOJA ===")

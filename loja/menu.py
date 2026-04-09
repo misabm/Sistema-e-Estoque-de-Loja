@@ -1,15 +1,16 @@
-from SistemaLoja import sistema_loja
-from Estoque import sistema_estoque
+from .estoque import sistema_estoque
+from .loja import sistema_loja
 
 
-def menu_principal():
+def menu_principal() -> None:
+    """Menu principal do sistema."""
     while True:
         print("\n==== MENU PRINCIPAL ====")
         print("1 - Sistema da Loja")
         print("2 - Sistema de Estoque")
         print("0 - Sair")
 
-        opcao = input("Escolha uma opção: ")
+        opcao = input("Escolha uma opção: ").strip()
 
         if opcao == "1":
             sistema_loja()
@@ -19,7 +20,8 @@ def menu_principal():
             print("Encerrando o sistema...")
             break
         else:
-            print("Opção inválida!")
+            print("Opção inválida.")
 
 
-menu_principal()
+if __name__ == "__main__":
+    menu_principal()

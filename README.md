@@ -38,3 +38,19 @@ Este é um sistema de linha de comando (CLI) desenvolvido em Python para gerenci
 1. Clone este repositório para a sua máquina local:
    ```bash
    git clone [https://github.com/misabm/Sistema-e-Estoque-de-Loja.git]
+
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd Sistema-e-Estoque-de-Loja
+
+3. Execute o arquivo principal:
+   ```bash
+   python main.py
+
+## 🧪 Como rodar os testes
+
+O projeto utiliza a biblioteca nativa unittest do Python para garantir a qualidade do código no arquivo de operações. Para executar a bateria de testes, rode o comando abaixo na raiz do projeto:
+
+```bash
+python -m unittest discover tests
+

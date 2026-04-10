@@ -2,7 +2,12 @@ from typing import Iterable
 
 
 def aplicar_desconto(total: float, porcentagem: float) -> float:
-    """Aplica desconto percentual sobre um total e retorna o valor final."""
+    """
+    Aplica um desconto em cima de um valor total.
+
+    Recebe o total da compra e a porcentagem de desconto.
+    Retorna o valor final já com o desconto aplicado.
+    """
     if not isinstance(total, (int, float)):
         raise TypeError("O total deve ser numérico.")
     if not isinstance(porcentagem, (int, float)):
@@ -15,7 +20,12 @@ def aplicar_desconto(total: float, porcentagem: float) -> float:
 
 
 def calcular_troco(valor_pago: float, total: float) -> float:
-    """Calcula o troco de uma compra e levanta erro se o valor pago for insuficiente."""
+    """
+    Calcula o troco de uma compra.
+
+    Recebe o valor pago pelo cliente e o total da compra.
+    Retorna quanto deve ser devolvido de troco.
+    """
     if not isinstance(valor_pago, (int, float)):
         raise TypeError("O valor pago deve ser numérico.")
     if not isinstance(total, (int, float)):
@@ -28,7 +38,12 @@ def calcular_troco(valor_pago: float, total: float) -> float:
 
 
 def calcular_imposto(valor_total: float, taxa: float = 0.10) -> float:
-    """Calcula o imposto sobre um valor total."""
+    """
+    Calcula o valor do imposto sobre uma compra.
+
+    Recebe o valor total e a taxa de imposto.
+    Retorna o valor do imposto calculado.
+    """
     if not isinstance(valor_total, (int, float)):
         raise TypeError("O valor total deve ser numérico.")
     if not isinstance(taxa, (int, float)):
@@ -39,7 +54,12 @@ def calcular_imposto(valor_total: float, taxa: float = 0.10) -> float:
 
 
 def calcular_frete(valor_total: float) -> float:
-    """Calcula o frete com base no valor total da compra."""
+    """
+    Calcula o frete da compra.
+
+    Recebe o valor total da compra.
+    Retorna o valor do frete de acordo com a regra definida.
+    """
     if not isinstance(valor_total, (int, float)):
         raise TypeError("O valor total deve ser numérico.")
     if valor_total <= 0:
@@ -52,7 +72,12 @@ def calcular_frete(valor_total: float) -> float:
 
 
 def validar_cpf_cliente(cpf_texto: str) -> bool:
-    """Valida um CPF usando a regra dos dígitos verificadores."""
+    """
+    Valida um CPF informado pelo cliente.
+
+    Recebe o CPF em texto.
+    Retorna True se o CPF for válido e False se não for.
+    """
     if not isinstance(cpf_texto, str):
         return False
 
@@ -64,6 +89,12 @@ def validar_cpf_cliente(cpf_texto: str) -> bool:
         return False
 
     def calcular_digito(base: str) -> str:
+        """
+        Calcula um dos dígitos verificadores do CPF.
+
+        Recebe a parte base do CPF.
+        Retorna o dígito calculado em formato de texto.
+        """
         soma = sum(int(numero) * peso for numero, peso in zip(base, range(len(base) + 1, 1, -1)))
         resto = soma % 11
         return "0" if resto < 2 else str(11 - resto)
@@ -75,7 +106,12 @@ def validar_cpf_cliente(cpf_texto: str) -> bool:
 
 
 def calcular_total(itens: Iterable[dict]) -> float:
-    """Calcula o total de uma lista de itens com preço e quantidade."""
+    """
+    Calcula o total de vários itens.
+
+    Recebe uma lista ou qualquer conjunto de itens com preço e quantidade.
+    Retorna a soma total de todos os produtos.
+    """
     total = 0.0
 
     for item in itens:
@@ -95,7 +131,12 @@ def calcular_total(itens: Iterable[dict]) -> float:
 
 
 def calcular_parcelamento(total: float, parcelas: int) -> float:
-    """Calcula o valor de cada parcela."""
+    """
+    Calcula quanto fica cada parcela.
+
+    Recebe o valor total da compra e a quantidade de parcelas.
+    Retorna o valor de cada parcela.
+    """
     if not isinstance(total, (int, float)):
         raise TypeError("O total deve ser numérico.")
     if not isinstance(parcelas, int):
@@ -108,7 +149,12 @@ def calcular_parcelamento(total: float, parcelas: int) -> float:
 
 
 def consultar_produto(produtos: dict, nome: str):
-    """Consulta um produto no dicionário de produtos pelo nome normalizado."""
+    """
+    Busca um produto dentro do dicionário.
+
+    Recebe o dicionário de produtos e o nome do produto.
+    Retorna o produto encontrado ou None se não existir.
+    """
     if not isinstance(produtos, dict):
         raise TypeError("produtos deve ser um dicionário.")
     if not isinstance(nome, str):

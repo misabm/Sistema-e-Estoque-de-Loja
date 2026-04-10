@@ -10,14 +10,26 @@ from .operacoes import (
     validar_cpf_cliente,
 )
 
+
 def listar_produtos_disponiveis():
+    """
+    Mostra os produtos que podem ser vendidos.
+
+    Usa o estoque atual e retorna só os produtos com preço e quantidade válidos.
+    """
     disponiveis = {}
     for nome, dados in produtos.items():
         if dados["preco"] is not None and dados["quantidade"] > 0:
             disponiveis[nome] = dados
     return disponiveis
 
+
 def consultar_produto_menu():
+    """
+    Faz a consulta de um produto pelo nome.
+
+    Pede o nome do produto ao usuário e mostra as informações dele na tela.
+    """
     nome = input("Digite o nome do produto: ")
     produto = consultar_produto(produtos, nome)
 
@@ -35,7 +47,13 @@ def consultar_produto_menu():
     print(f"Preço: {preco_texto}")
     print(f"Quantidade: {produto['quantidade']}")
 
+
 def aplicar_desconto_menu():
+    """
+    Pede um valor e aplica desconto.
+
+    O usuário informa o total e a porcentagem de desconto.
+    """
     try:
         total = float(input("Digite o total: "))
         porcentagem = float(input("Digite a porcentagem de desconto: "))
@@ -44,7 +62,13 @@ def aplicar_desconto_menu():
     except Exception as erro:
         print(f"Erro: {erro}")
 
+
 def calcular_troco_menu():
+    """
+    Calcula o troco de uma compra.
+
+    Recebe o total da compra e o valor pago pelo cliente.
+    """
     try:
         total = float(input("Digite o total da compra: "))
         valor_pago = float(input("Digite o valor pago: "))
@@ -53,7 +77,13 @@ def calcular_troco_menu():
     except Exception as erro:
         print(f"Erro: {erro}")
 
+
 def calcular_imposto_menu():
+    """
+    Calcula o imposto de um valor.
+
+    O usuário pode informar a taxa ou deixar o valor padrão de 10%.
+    """
     try:
         total = float(input("Digite o valor total: "))
         taxa_texto = input("Digite a taxa de imposto ou pressione Enter para 10%: ").strip()
@@ -68,7 +98,13 @@ def calcular_imposto_menu():
     except Exception as erro:
         print(f"Erro: {erro}")
 
+
 def calcular_frete_menu():
+    """
+    Calcula o frete da compra.
+
+    O usuário informa o valor total e o sistema calcula o frete.
+    """
     try:
         total = float(input("Digite o valor total: "))
         frete = calcular_frete(total)
@@ -76,14 +112,26 @@ def calcular_frete_menu():
     except Exception as erro:
         print(f"Erro: {erro}")
 
+
 def validar_cpf_menu():
+    """
+    Valida um CPF digitado pelo usuário.
+
+    Mostra na tela se o CPF é válido ou não.
+    """
     cpf = input("Digite o CPF: ")
     if validar_cpf_cliente(cpf):
         print("CPF válido.")
     else:
         print("CPF inválido.")
 
+
 def calcular_total_menu():
+    """
+    Calcula o total de vários itens.
+
+    O usuário informa quantos itens quer somar, com preço e quantidade.
+    """
     try:
         quantidade_itens = int(input("Quantos itens deseja calcular? "))
         itens = []
@@ -99,7 +147,13 @@ def calcular_total_menu():
     except Exception as erro:
         print(f"Erro: {erro}")
 
+
 def calcular_parcelamento_menu():
+    """
+    Calcula o valor de cada parcela.
+
+    O usuário informa o total da compra e a quantidade de parcelas.
+    """
     try:
         total = float(input("Digite o total da compra: "))
         parcelas = int(input("Digite a quantidade de parcelas: "))
@@ -108,7 +162,13 @@ def calcular_parcelamento_menu():
     except Exception as erro:
         print(f"Erro: {erro}")
 
+
 def registrar_compra():
+    """
+    Registra uma compra com itens do estoque.
+
+    Monta o carrinho, calcula valores finais e faz a baixa no estoque.
+    """
     disponiveis = listar_produtos_disponiveis()
 
     if not disponiveis:
@@ -207,7 +267,13 @@ def registrar_compra():
 
     print("Compra finalizada com sucesso.")
 
+
 def sistema_loja():
+    """
+    Abre o menu principal da loja.
+
+    Mostra as funções da parte de vendas e fica rodando até o usuário voltar.
+    """
     while True:
         print("\n==== SISTEMA DA LOJA ====")
         print("1 - Consultar produto")

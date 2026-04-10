@@ -4,7 +4,12 @@ produtos = {}
 
 
 def adicionar_produto(produtos_dict: dict, nome: str, preco=None, quantidade: int = 0) -> None:
-    """Adiciona um produto ao estoque."""
+    """
+    Adiciona um produto no estoque.
+
+    Recebe o dicionário do estoque, o nome do produto, preço opcional e quantidade.
+    Não retorna nada, só atualiza o estoque.
+    """
     if not isinstance(produtos_dict, dict):
         raise TypeError("O estoque deve ser um dicionário.")
 
@@ -27,7 +32,12 @@ def adicionar_produto(produtos_dict: dict, nome: str, preco=None, quantidade: in
 
 
 def adicionar_preco_produto(produtos_dict: dict, nome: str, preco: float) -> None:
-    """Define ou atualiza o preço de um produto existente."""
+    """
+    Coloca ou atualiza o preço de um produto.
+
+    Recebe o estoque, o nome do produto e o novo preço.
+    Não retorna nada, só altera o produto.
+    """
     nome = nome.strip().title()
 
     if nome not in produtos_dict:
@@ -41,7 +51,12 @@ def adicionar_preco_produto(produtos_dict: dict, nome: str, preco: float) -> Non
 
 
 def atualizar_quantidade(produtos_dict: dict, nome: str, nova_quantidade: int) -> None:
-    """Substitui a quantidade de um produto por um novo valor."""
+    """
+    Atualiza a quantidade de um produto.
+
+    Recebe o estoque, o nome do produto e a nova quantidade.
+    Não retorna nada, só troca o valor da quantidade.
+    """
     nome = nome.strip().title()
 
     if nome not in produtos_dict:
@@ -55,7 +70,12 @@ def atualizar_quantidade(produtos_dict: dict, nome: str, nova_quantidade: int) -
 
 
 def remover_produto(produtos_dict: dict, nome: str) -> None:
-    """Remove um produto do estoque."""
+    """
+    Remove um produto do estoque.
+
+    Recebe o estoque e o nome do produto.
+    Não retorna nada, só apaga o item do dicionário.
+    """
     nome = nome.strip().title()
 
     if nome not in produtos_dict:
@@ -65,7 +85,12 @@ def remover_produto(produtos_dict: dict, nome: str) -> None:
 
 
 def calcular_total_estoque(produtos_dict: dict) -> float:
-    """Calcula o valor total de todos os itens do estoque."""
+    """
+    Calcula o valor total do estoque.
+
+    Recebe o dicionário com os produtos.
+    Retorna o valor total de todos os itens cadastrados.
+    """
     itens = []
 
     for dados in produtos_dict.values():
@@ -79,7 +104,12 @@ def calcular_total_estoque(produtos_dict: dict) -> float:
 
 
 def gerar_alerta_estoque_baixo(produtos_dict: dict, limite: int = 5) -> list:
-    """Retorna uma lista de produtos com quantidade abaixo do limite."""
+    """
+    Verifica quais produtos estão com pouca quantidade.
+
+    Recebe o estoque e o limite mínimo.
+    Retorna uma lista com os produtos que estão abaixo do limite.
+    """
     if not isinstance(limite, int):
         raise TypeError("O limite deve ser inteiro.")
     if limite < 0:
@@ -95,7 +125,12 @@ def gerar_alerta_estoque_baixo(produtos_dict: dict, limite: int = 5) -> list:
 
 
 def listar_produtos(produtos_dict: dict) -> list:
-    """Retorna uma lista de textos formatados com os produtos do estoque."""
+    """
+    Monta uma lista com os produtos cadastrados.
+
+    Recebe o dicionário do estoque.
+    Retorna uma lista de textos com as informações dos produtos.
+    """
     lista = []
 
     for nome, dados in produtos_dict.items():
@@ -107,7 +142,12 @@ def listar_produtos(produtos_dict: dict) -> list:
 
 
 def sistema_estoque() -> None:
-    """Menu interativo do estoque."""
+    """
+    Abre o menu do estoque.
+
+    Mostra as opções para cadastrar, alterar e listar produtos.
+    Não retorna nada, só fica no menu até o usuário sair.
+    """
     while True:
         print("\n==== SISTEMA DE ESTOQUE ====")
         print("1 - Adicionar produto")
